@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17-may-2019 17:43:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bom.entidades.InspecionCabecera" table="inspecion_cabecera" schema="public" optimistic-lock="version">
+        <comment>TABLA QUE PERMITE ALMACENAR LA CABECERA PARA REALIZAR UNA INSPECCION</comment>
+        <id name="icnId" type="int">
+            <column name="icn_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="persona" class="com.bom.entidades.Persona" fetch="select">
+            <column name="per_id" />
+        </many-to-one>
+        <many-to-one name="solicitud" class="com.bom.entidades.Solicitud" fetch="select">
+            <column name="sol_id" />
+        </many-to-one>
+        <property name="direccion" type="string">
+            <column name="direccion" length="100" not-null="true" />
+        </property>
+        <property name="latitud" type="string">
+            <column name="latitud" length="25" not-null="true" />
+        </property>
+        <property name="longitud" type="string">
+            <column name="longitud" length="25" not-null="true" />
+        </property>
+        <property name="fecha" type="date">
+            <column name="fecha" length="13" not-null="true" />
+        </property>
+        <property name="riesgosDeIncendio" type="string">
+            <column name="riesgos_de_incendio" length="1000" not-null="true" />
+        </property>
+        <property name="recomendaciones" type="string">
+            <column name="recomendaciones" length="1000" not-null="true" />
+        </property>
+        <property name="observaciones" type="string">
+            <column name="observaciones" length="1000" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="15" not-null="true" />
+        </property>
+        <property name="plazo" type="string">
+            <column name="plazo" length="50" not-null="true" />
+        </property>
+        <property name="numeroNotificacion" type="string">
+            <column name="numero_notificacion" length="10" not-null="true" />
+        </property>
+        <set name="inspeccionDetalles" table="inspeccion_detalle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="icn_id" />
+            </key>
+            <one-to-many class="com.bom.entidades.InspeccionDetalle" />
+        </set>
+    </class>
+</hibernate-mapping>

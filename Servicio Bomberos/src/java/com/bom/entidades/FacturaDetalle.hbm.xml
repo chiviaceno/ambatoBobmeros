@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17-may-2019 17:43:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bom.entidades.FacturaDetalle" table="factura_detalle" schema="public" optimistic-lock="version">
+        <comment>ALAMCENA EL DETALLE DE LA FACTURA QUE SE EMITE</comment>
+        <id name="fadId" type="int">
+            <column name="fad_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="facturaCabecera" class="com.bom.entidades.FacturaCabecera" fetch="select">
+            <column name="fac_id" />
+        </many-to-one>
+        <many-to-one name="servicio" class="com.bom.entidades.Servicio" fetch="select">
+            <column name="ser_id" />
+        </many-to-one>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="200" not-null="true" />
+        </property>
+        <property name="cantidad" type="int">
+            <column name="cantidad" not-null="true" />
+        </property>
+        <property name="precio" type="double">
+            <column name="precio" scale="0" not-null="true" />
+        </property>
+        <property name="total" type="double">
+            <column name="total" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

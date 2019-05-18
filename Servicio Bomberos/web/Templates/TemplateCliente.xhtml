@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title><ui:insert name="title">Cuerpo de Bomberos Ambato</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="65" header="BIENVEIDOS AL HORABLE CUERPO DE BOMBEROS DE AMBATO">
+                <div id="menuPrincpal">
+
+                    <h:form>  
+                        <p:growl id="messages"/>
+                        <p:menubar id="menuBar">
+                            <p:menuitem value="#{bundle.Home}" outcome="/Admin/indexCliente" icon="ui-icon-home"/>
+                            <p:submenu label="Servicios" icon="pi pi-pencil" >
+                                <p:menuitem value="Nueva Solicitud" url="../Usuarios/misServicios/List.xhtml" icon="pi pi-angle-double-left" />
+                                <p:menuitem value="Estados de Solicitudes" url="#" icon="pi pi-angle-double-right" />
+
+                            </p:submenu>
+                            <f:facet name="options">
+                                <p:splitButton id="basic" value="Usuario" icon="pi pi-Login"><font></font>
+                                    <p:menuitem value="Perfil" action="#{buttonView.update}"  icon="pi pi-login" /><font></font>
+                                    <p:menuitem value="Actualizar Perfil" action="#{buttonView.delete}" ajax="false" icon="pi pi-update" /><font></font>
+                                    <p:separator /><font></font>
+                                    <p:menuitem value="Cerar Sesión" actionListener="#{login.cerrarSesion()}" action="/Login/Login?faces-redirect=true" icon="ui-icon-key" /><font></font>
+                                </p:splitButton>
+                            </f:facet>
+                        </p:menubar>
+                    </h:form>
+                </div>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="60">
+                <ui:insert name="footer"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="/Templates/TemplateLogin.xhtml">
+
+            <ui:define name="body">
+                <h:form id="formLogin"> 
+
+                    <p:growl id="mensajeGeneral" sticky="true" showDetail="true" life="3000" />
+                    <p:panel header="Inicie Sesión Por Favor" widgetVar="dlg" >
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputLabel for="nombreUsuario" value="Usuario" />
+                            <p:inputText id="nombreUsuario" value="#{managedBeanLogin.usuarios.usuario}" placeholder="Usuario" required="true" label="Usuario" 
+                                         requiredMessage="Escriba el Usuario Por Favor"/>
+
+                            <h:outputLabel for="password" value="Password:" />
+                            <p:password id="password" value="#{managedBeanLogin.usuarios.password}" placeholder="Password" required="true" label="password" 
+                                        requiredMessage="Escriba el Passwor por Favor"/>
+
+                            <f:facet name="footer">
+                                <p:commandButton value="Login" update="formLogin" action="#{managedBeanLogin.login()}"
+                                                 oncomplete="handleLoginRequest(xhr, status, args)" />
+                            </f:facet>  
+                        </h:panelGrid>
+
+                    </p:panel>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+        <script type="text/javascript">
+            function handleLoginRequest(xhr, status, args) {
+                if (args.validationFailed || !args.loggedIn) {
+                    jQuery('#formLogin')effect("shake", {times: 3}, 350);
+                } else {
+                   location.href = args.ruta;
+                }
+            }
+        </script>
+    </body>
+</html>

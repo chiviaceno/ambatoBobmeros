@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17-may-2019 17:43:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bom.entidades.Persona" table="persona" schema="public" optimistic-lock="version">
+        <comment>TABLA QUE SIRVE PARA ALMACENAR TODAS LAS PERSONAS QUE UTILIZARAN EL SISTEMAS EN SUS DIFERENTES ROLES</comment>
+        <id name="perId" type="int">
+            <column name="per_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="25" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="25" not-null="true" />
+        </property>
+        <property name="dni" type="string">
+            <column name="dni" length="15" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="150" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="13" not-null="true" />
+        </property>
+        <property name="estadoCivil" type="string">
+            <column name="estado_civil" length="15" />
+        </property>
+        <property name="sexo" type="string">
+            <column name="sexo" length="10" />
+        </property>
+        <property name="EMail" type="string">
+            <column name="e_mail" length="50" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="15" />
+        </property>
+        <property name="fechaCreacion" type="date">
+            <column name="fecha_creacion" length="13" not-null="true" />
+        </property>
+        <property name="fechaModificacion" type="date">
+            <column name="fecha_modificacion" length="13" not-null="true" />
+        </property>
+        <set name="inspecionCabeceras" table="inspecion_cabecera" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="per_id" />
+            </key>
+            <one-to-many class="com.bom.entidades.InspecionCabecera" />
+        </set>
+        <set name="usuarioses" table="usuarios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="per_id" />
+            </key>
+            <one-to-many class="com.bom.entidades.Usuarios" />
+        </set>
+        <set name="facturaCabeceras" table="factura_cabecera" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="per_id" />
+            </key>
+            <one-to-many class="com.bom.entidades.FacturaCabecera" />
+        </set>
+        <set name="solicituds" table="solicitud" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="per_id" />
+            </key>
+            <one-to-many class="com.bom.entidades.Solicitud" />
+        </set>
+    </class>
+</hibernate-mapping>

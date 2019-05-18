@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17-may-2019 17:43:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bom.entidades.FacturaCabecera" table="factura_cabecera" schema="public" optimistic-lock="version">
+        <comment>TABLA QUE ALMACENA LA INFORMACION DE LA CABECERA PARA REALIZAR UNA FACTURA</comment>
+        <id name="facId" type="int">
+            <column name="fac_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="persona" class="com.bom.entidades.Persona" fetch="select">
+            <column name="per_id" />
+        </many-to-one>
+        <many-to-one name="solicitud" class="com.bom.entidades.Solicitud" fetch="select">
+            <column name="sol_id" />
+        </many-to-one>
+        <property name="fecha" type="date">
+            <column name="fecha" length="13" not-null="true" />
+        </property>
+        <property name="tipoDocumento" type="string">
+            <column name="tipo_documento" length="25" not-null="true" />
+        </property>
+        <property name="tipoCuenta" type="string">
+            <column name="tipo_cuenta" length="15" not-null="true" />
+        </property>
+        <property name="total" type="double">
+            <column name="total" scale="0" not-null="true" />
+        </property>
+        <set name="permisoFuncionamientos" table="permiso_funcionamiento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fac_id" />
+            </key>
+            <one-to-many class="com.bom.entidades.PermisoFuncionamiento" />
+        </set>
+        <set name="facturaDetalles" table="factura_detalle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fac_id" />
+            </key>
+            <one-to-many class="com.bom.entidades.FacturaDetalle" />
+        </set>
+    </class>
+</hibernate-mapping>

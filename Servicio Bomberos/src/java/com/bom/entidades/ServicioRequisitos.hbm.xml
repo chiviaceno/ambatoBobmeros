@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17-may-2019 17:43:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bom.entidades.ServicioRequisitos" table="servicio_requisitos" schema="public" optimistic-lock="version">
+        <comment>ESTA TABLA PERMITE UNA RELACION DE MUCHOS A MUCHOS ENTRE SERVICIO Y REQUISITOS</comment>
+        <id name="sreId" type="int">
+            <column name="sre_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="requisitos" class="com.bom.entidades.Requisitos" fetch="select">
+            <column name="req_id" />
+        </many-to-one>
+        <many-to-one name="servicio" class="com.bom.entidades.Servicio" fetch="select">
+            <column name="ser_id" />
+        </many-to-one>
+        <set name="archivoses" table="archivos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sre_id" />
+            </key>
+            <one-to-many class="com.bom.entidades.Archivos" />
+        </set>
+    </class>
+</hibernate-mapping>

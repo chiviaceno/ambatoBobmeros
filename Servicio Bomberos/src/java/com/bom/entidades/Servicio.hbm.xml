@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17-may-2019 17:43:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bom.entidades.Servicio" table="servicio" schema="public" optimistic-lock="version">
+        <comment>TABLA QUE PERMITE REGISTAR LOS SERVICIO A LOS QUE BRINDA ATENCION EL CUERPO DE BOMBEROS</comment>
+        <id name="serId" type="int">
+            <column name="ser_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="200" not-null="true" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="300" not-null="true" />
+        </property>
+        <property name="valor" type="double">
+            <column name="valor" scale="0" not-null="true" />
+        </property>
+        <set name="servicioRequisitoses" table="servicio_requisitos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ser_id" />
+            </key>
+            <one-to-many class="com.bom.entidades.ServicioRequisitos" />
+        </set>
+        <set name="facturaDetalles" table="factura_detalle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ser_id" />
+            </key>
+            <one-to-many class="com.bom.entidades.FacturaDetalle" />
+        </set>
+        <set name="solicituds" table="solicitud" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ser_id" />
+            </key>
+            <one-to-many class="com.bom.entidades.Solicitud" />
+        </set>
+    </class>
+</hibernate-mapping>

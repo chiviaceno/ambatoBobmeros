@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <navigation-rule>
+        <from-view-id>/Login/Login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Administrador</from-outcome>
+            <to-view-id>/Admin/indexAdministrator.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Contador</from-outcome>
+            <to-view-id>/Contador/indexContador.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Inspector</from-outcome>
+            <to-view-id>/Inspector/indexInspector.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Cliente</from-outcome>
+            <to-view-id>/Cliente/indexCliente.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>case2</from-outcome>
+            <to-view-id>/Cliente/indexCliente.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17-may-2019 17:43:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bom.entidades.Usuarios" table="usuarios" schema="public" optimistic-lock="version">
+        <comment>TABLA PARA CREATAR TODOS LOS USUARIOS DE LOGEO PARA EL SISTEMA</comment>
+        <id name="usuId" type="int">
+            <column name="usu_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="persona" class="com.bom.entidades.Persona" fetch="select">
+            <column name="per_id" />
+        </many-to-one>
+        <property name="usuario" type="string">
+            <column name="usuario" length="15" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="20" not-null="true" />
+        </property>
+        <property name="tipoUsuario" type="string">
+            <column name="tipo_usuario" length="15" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

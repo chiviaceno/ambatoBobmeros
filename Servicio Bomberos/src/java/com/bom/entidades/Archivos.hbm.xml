@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17-may-2019 17:43:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bom.entidades.Archivos" table="archivos" schema="public" optimistic-lock="version">
+        <comment>TABLA QUE PERMITE ALMACENAR LOS ARCHIVOS POR CADA REQUISITO QUE REQUIEREN LOS SERVICIOS</comment>
+        <id name="arcId" type="int">
+            <column name="arc_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="servicioRequisitos" class="com.bom.entidades.ServicioRequisitos" fetch="select">
+            <column name="sre_id" />
+        </many-to-one>
+        <many-to-one name="solicitud" class="com.bom.entidades.Solicitud" fetch="select">
+            <column name="sol_id" />
+        </many-to-one>
+        <property name="archivo" type="java.lang.Short">
+            <column name="archivo" />
+        </property>
+    </class>
+</hibernate-mapping>

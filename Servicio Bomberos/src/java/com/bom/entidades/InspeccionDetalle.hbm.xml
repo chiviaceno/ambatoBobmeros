@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17-may-2019 17:43:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bom.entidades.InspeccionDetalle" table="inspeccion_detalle" schema="public" optimistic-lock="version">
+        <comment>ALMACENA EL DETALLE DE CADA INSPECCION QUE SE REALIZA</comment>
+        <id name="indId" type="int">
+            <column name="ind_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="inspecionCabecera" class="com.bom.entidades.InspecionCabecera" fetch="select">
+            <column name="icn_id" />
+        </many-to-one>
+        <many-to-one name="requisitos" class="com.bom.entidades.Requisitos" fetch="select">
+            <column name="req_id" />
+        </many-to-one>
+        <property name="estado" type="string">
+            <column name="estado" length="15" not-null="true" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="tipo" length="15" not-null="true" />
+        </property>
+        <property name="cantidad" type="int">
+            <column name="cantidad" not-null="true" />
+        </property>
+        <property name="capacidad" type="string">
+            <column name="capacidad" length="50" not-null="true" />
+        </property>
+        <property name="ubicacion" type="string">
+            <column name="ubicacion" length="100" not-null="true" />
+        </property>
+        <property name="tiene" type="string">
+            <column name="tiene" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17-may-2019 17:43:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bom.entidades.PermisoFuncionamiento" table="permiso_funcionamiento" schema="public" optimistic-lock="version">
+        <comment>DONDE SE LAMACENA ELPERMISO DE FUNCIONAMIENTO ACORDE CON EL CLIENTE Y SU SOLICITUD</comment>
+        <id name="pefId" type="int">
+            <column name="pef_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="facturaCabecera" class="com.bom.entidades.FacturaCabecera" fetch="select">
+            <column name="fac_id" />
+        </many-to-one>
+        <property name="fechaCreacion" type="date">
+            <column name="fecha_creacion" length="13" not-null="true" />
+        </property>
+        <property name="fechaVencimiento" type="date">
+            <column name="fecha_vencimiento" length="13" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

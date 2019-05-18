@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17-may-2019 17:43:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bom.entidades.Solicitud" table="solicitud" schema="public" optimistic-lock="version">
+        <comment>TABLA DONDE SE ALMACENARA LA INFORMACION CON RESPECTO ALA SOLICITUD DEL CLIENTE PARA SER INSPECIONADA Y LUEGO APROBADA</comment>
+        <id name="solId" type="int">
+            <column name="sol_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="persona" class="com.bom.entidades.Persona" fetch="select">
+            <column name="per_id" />
+        </many-to-one>
+        <many-to-one name="servicio" class="com.bom.entidades.Servicio" fetch="select">
+            <column name="ser_id" />
+        </many-to-one>
+        <property name="numeroDeSolicitud" type="string">
+            <column name="numero_de_solicitud" length="10" not-null="true" />
+        </property>
+        <property name="nombreComercial" type="string">
+            <column name="nombre_comercial" length="200" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="100" not-null="true" />
+        </property>
+        <property name="fechaCreacion" type="date">
+            <column name="fecha_creacion" length="13" not-null="true" />
+        </property>
+        <property name="fechaModificacion" type="date">
+            <column name="fecha_modificacion" length="13" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="15" not-null="true" />
+        </property>
+        <property name="observacion" type="string">
+            <column name="observacion" length="1000" not-null="true" />
+        </property>
+        <property name="estadoDePago" type="string">
+            <column name="estado_de_pago" length="15" not-null="true" />
+        </property>
+        <set name="facturaCabeceras" table="factura_cabecera" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sol_id" />
+            </key>
+            <one-to-many class="com.bom.entidades.FacturaCabecera" />
+        </set>
+        <set name="inspecionCabeceras" table="inspecion_cabecera" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sol_id" />
+            </key>
+            <one-to-many class="com.bom.entidades.InspecionCabecera" />
+        </set>
+        <set name="archivoses" table="archivos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sol_id" />
+            </key>
+            <one-to-many class="com.bom.entidades.Archivos" />
+        </set>
+    </class>
+</hibernate-mapping>
