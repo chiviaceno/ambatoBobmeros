@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title><ui:insert name="title">Cuerpo de Bomberos Ambato</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="65" header="BIENVEIDOS AL HORABLE CUERPO DE BOMBEROS DE AMBATO">
+                <div id="menuPrincpal">
+
+                    <h:form>  
+                        <p:growl id="messages"/>
+                        <p:menubar id="menuBar">
+                            <p:menuitem value="#{bundle.Home}" outcome="/Admin/indexAdministrator" icon="ui-icon-home"/>
+                            <p:submenu label="Facturar">
+                                <p:menuitem value="Nueva Factura" outcome="/Admin/indexAdministrator" />
+                                <p:menuitem value="Devolición" outcome="/Admin/indexAdministrator" />
+                                <p:menuitem value="Todas las Facturas" outcome="/Admin/indexAdministrator" />
+                            </p:submenu>
+                            <p:submenu label="Informes">
+                                <p:menuitem value="Ingresos" outcome="/Admin/indexAdministrator" />
+                                <p:menuitem value="Egresos" outcome="/Admin/indexAdministrator" />
+                                <p:menuitem value="Totales" outcome="/Admin/indexAdministrator" />
+                            </p:submenu>
+                            <p:submenu label="Permisos">
+                                <p:menuitem value="Nuevo Permiso" outcome="/Admin/indexAdministrator" />
+                                <p:menuitem value="Todos los Permisos" outcome="/Admin/indexAdministrator" />
+                                <p:menuitem value="Detalle de Cuentas" outcome="/Admin/indexAdministrator" />
+                            </p:submenu>
+                            <f:facet name="options">
+                                <p:commandButton value="Cerar Sesión" actionListener="#{login.cerrarSesion()}" action="/Login/Login?faces-redirect=true" icon="ui-icon-key"/>
+                            </f:facet>
+                        </p:menubar>
+                    </h:form>
+                </div>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="60">
+                <ui:insert name="footer"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

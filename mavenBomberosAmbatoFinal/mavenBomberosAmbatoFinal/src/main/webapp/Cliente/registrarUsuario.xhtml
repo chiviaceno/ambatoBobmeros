@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="/Templates/TemplateRegistrar.xhtml">
+
+            <ui:define name="body">
+                <h:form>
+                    <p:messages id="mensaje" autoUpdate="false" severity="info, fatal"/>
+                    <p:fieldset legend="Bienvenidos" style="margin-bottom:20px">
+                        <h:panelGrid columns="2" cellpadding="1" style="align-content: center">
+                            <h:panelGrid columns="2" style="align-content: center">
+
+                                <p:fieldset legend="Datos Personales">
+
+                                    <p:panelGrid columns="2">
+                                        <p:outputLabel value="Nombre" />
+                                        <p:inputText value="#{insertPersona.pNombre}" required="true"/>
+                                        
+
+                                        <p:outputLabel  value="Apellido"/>
+                                        <p:inputText value="#{insertPersona.pApellido}" required="true"/>
+                                       
+
+                                        <p:outputLabel value="Cedula"/>
+                                        <p:inputText id="txtApellidos" value="#{insertPersona.pDni}" required="true"/>
+                                        
+
+                                        <p:outputLabel  value="Dirección"/>
+                                        <p:inputText value="#{insertPersona.pDireccion}" required="true"/>
+                                        
+
+                                        <p:outputLabel value="Telefono"/>
+                                        <p:inputText value="#{insertPersona.pTelefono}" required="true"/>
+                                        
+
+                                        <p:outputLabel value="Estado Civil"/>
+                                        <p:selectOneMenu id = "console" value = "#{insertPersona.pEstadoCivil}" style = "width: 125px">
+                                            <f:selectItem itemLabel = "Soltero/a" itemValue = "Soltero" />
+                                            <f:selectItem itemLabel = "Casado/a" itemValue = "Casado" />
+                                            <f:selectItem itemLabel = "Divorciado/a" itemValue = "Divorciado" />
+                                            <f:selectItem itemLabel = "Viudo/a" itemValue = "Viudo" />
+                                            <f:selectItem itemLabel = "Union Libre" itemValue = "Union Libre" />
+                                        </p:selectOneMenu>
+                                       
+                                        
+                                        <p:outputLabel value="Sexo"/>
+                                        <p:selectOneMenu  value = "#{insertPersona.pSexo}" style = "width: 125px">
+                                            <f:selectItem itemLabel = "Masculino" itemValue = "Masculino" />
+                                            <f:selectItem itemLabel = "Femenino" itemValue = "Femenino" />
+                                        </p:selectOneMenu>
+                                        
+                                        
+                                        <p:outputLabel value="Correo"/>
+                                        <p:inputText type="email" value="#{insertPersona.pCorreo}" required="true"/>
+                                       
+                                        
+                                    </p:panelGrid>
+                                </p:fieldset>
+                                <p:commandButton icon="ui-icon-check"  ajax="false" value="Registrar" update="mensaje" actionListener="#{insertPersona.ingresarPersona()}"/>
+
+                            </h:panelGrid>
+                        </h:panelGrid>
+                    </p:fieldset>
+
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
