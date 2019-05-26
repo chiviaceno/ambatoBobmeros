@@ -12,10 +12,11 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Dennis Orellana
+ * @author Dennis
  */
 @Stateless
 public class InspeccionDetalleFacade extends AbstractFacade<InspeccionDetalle> implements InspeccionDetalleFacadeLocal {
+
     @PersistenceContext(unitName = "bomberosAmbatoPU")
     private EntityManager em;
 

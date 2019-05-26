@@ -12,10 +12,11 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Dennis Orellana
+ * @author Dennis
  */
 @Stateless
 public class ServicioFacade extends AbstractFacade<Servicio> implements ServicioFacadeLocal {
+
     @PersistenceContext(unitName = "bomberosAmbatoPU")
     private EntityManager em;
 

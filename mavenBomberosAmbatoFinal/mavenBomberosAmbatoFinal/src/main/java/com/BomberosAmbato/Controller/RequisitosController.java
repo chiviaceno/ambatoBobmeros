@@ -15,7 +15,7 @@ public class RequisitosController implements Serializable{
     @EJB
     private RequisitosFacadeLocal requisitoEJB;
     private Requisitos requisitos;
-    
+   
     @PostConstruct
     public void init(){
         requisitos = new Requisitos();
@@ -23,7 +23,8 @@ public class RequisitosController implements Serializable{
             
     public void registrar(){
         try{
-            requisitoEJB.create(requisitos);
+           requisitoEJB.create(requisitos);
+            
         }catch(Exception e){
             // mensaje 
         }
@@ -35,6 +36,7 @@ public class RequisitosController implements Serializable{
 
     public void setRequisitos(Requisitos requisitos) {
         this.requisitos = requisitos;
+      
     }
     
 }

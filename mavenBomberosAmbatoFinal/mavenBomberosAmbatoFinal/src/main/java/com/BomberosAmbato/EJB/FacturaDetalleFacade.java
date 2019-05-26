@@ -12,10 +12,11 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Dennis Orellana
+ * @author Dennis
  */
 @Stateless
 public class FacturaDetalleFacade extends AbstractFacade<FacturaDetalle> implements FacturaDetalleFacadeLocal {
+
     @PersistenceContext(unitName = "bomberosAmbatoPU")
     private EntityManager em;
 

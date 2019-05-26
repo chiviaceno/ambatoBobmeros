@@ -29,23 +29,24 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Dennis Orellana
+ * @author Dennis
  */
 @Entity
 @Table(name = "solicitud")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Solicitud.findAll", query = "SELECT s FROM Solicitud s"),
-    @NamedQuery(name = "Solicitud.findBySolId", query = "SELECT s FROM Solicitud s WHERE s.solId = :solId"),
-    @NamedQuery(name = "Solicitud.findByNumeroDeSolicitud", query = "SELECT s FROM Solicitud s WHERE s.numeroDeSolicitud = :numeroDeSolicitud"),
-    @NamedQuery(name = "Solicitud.findByNombreComercial", query = "SELECT s FROM Solicitud s WHERE s.nombreComercial = :nombreComercial"),
-    @NamedQuery(name = "Solicitud.findByDireccion", query = "SELECT s FROM Solicitud s WHERE s.direccion = :direccion"),
-    @NamedQuery(name = "Solicitud.findByFechaCreacion", query = "SELECT s FROM Solicitud s WHERE s.fechaCreacion = :fechaCreacion"),
-    @NamedQuery(name = "Solicitud.findByFechaModificacion", query = "SELECT s FROM Solicitud s WHERE s.fechaModificacion = :fechaModificacion"),
-    @NamedQuery(name = "Solicitud.findByEstado", query = "SELECT s FROM Solicitud s WHERE s.estado = :estado"),
-    @NamedQuery(name = "Solicitud.findByObservacion", query = "SELECT s FROM Solicitud s WHERE s.observacion = :observacion"),
-    @NamedQuery(name = "Solicitud.findByEstadoDePago", query = "SELECT s FROM Solicitud s WHERE s.estadoDePago = :estadoDePago")})
+    @NamedQuery(name = "Solicitud.findAll", query = "SELECT s FROM Solicitud s")
+    , @NamedQuery(name = "Solicitud.findBySolId", query = "SELECT s FROM Solicitud s WHERE s.solId = :solId")
+    , @NamedQuery(name = "Solicitud.findByNumeroDeSolicitud", query = "SELECT s FROM Solicitud s WHERE s.numeroDeSolicitud = :numeroDeSolicitud")
+    , @NamedQuery(name = "Solicitud.findByNombreComercial", query = "SELECT s FROM Solicitud s WHERE s.nombreComercial = :nombreComercial")
+    , @NamedQuery(name = "Solicitud.findByDireccion", query = "SELECT s FROM Solicitud s WHERE s.direccion = :direccion")
+    , @NamedQuery(name = "Solicitud.findByFechaCreacion", query = "SELECT s FROM Solicitud s WHERE s.fechaCreacion = :fechaCreacion")
+    , @NamedQuery(name = "Solicitud.findByFechaModificacion", query = "SELECT s FROM Solicitud s WHERE s.fechaModificacion = :fechaModificacion")
+    , @NamedQuery(name = "Solicitud.findByEstado", query = "SELECT s FROM Solicitud s WHERE s.estado = :estado")
+    , @NamedQuery(name = "Solicitud.findByObservacion", query = "SELECT s FROM Solicitud s WHERE s.observacion = :observacion")
+    , @NamedQuery(name = "Solicitud.findByEstadoDePago", query = "SELECT s FROM Solicitud s WHERE s.estadoDePago = :estadoDePago")})
 public class Solicitud implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

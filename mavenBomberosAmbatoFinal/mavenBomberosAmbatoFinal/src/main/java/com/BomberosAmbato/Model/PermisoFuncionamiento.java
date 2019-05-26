@@ -25,17 +25,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Dennis Orellana
+ * @author Dennis
  */
 @Entity
 @Table(name = "permiso_funcionamiento")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "PermisoFuncionamiento.findAll", query = "SELECT p FROM PermisoFuncionamiento p"),
-    @NamedQuery(name = "PermisoFuncionamiento.findByPefId", query = "SELECT p FROM PermisoFuncionamiento p WHERE p.pefId = :pefId"),
-    @NamedQuery(name = "PermisoFuncionamiento.findByFechaCreacion", query = "SELECT p FROM PermisoFuncionamiento p WHERE p.fechaCreacion = :fechaCreacion"),
-    @NamedQuery(name = "PermisoFuncionamiento.findByFechaVencimiento", query = "SELECT p FROM PermisoFuncionamiento p WHERE p.fechaVencimiento = :fechaVencimiento")})
+    @NamedQuery(name = "PermisoFuncionamiento.findAll", query = "SELECT p FROM PermisoFuncionamiento p")
+    , @NamedQuery(name = "PermisoFuncionamiento.findByPefId", query = "SELECT p FROM PermisoFuncionamiento p WHERE p.pefId = :pefId")
+    , @NamedQuery(name = "PermisoFuncionamiento.findByFechaCreacion", query = "SELECT p FROM PermisoFuncionamiento p WHERE p.fechaCreacion = :fechaCreacion")
+    , @NamedQuery(name = "PermisoFuncionamiento.findByFechaVencimiento", query = "SELECT p FROM PermisoFuncionamiento p WHERE p.fechaVencimiento = :fechaVencimiento")})
 public class PermisoFuncionamiento implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

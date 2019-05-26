@@ -29,19 +29,20 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Dennis Orellana
+ * @author Dennis
  */
 @Entity
 @Table(name = "factura_cabecera")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "FacturaCabecera.findAll", query = "SELECT f FROM FacturaCabecera f"),
-    @NamedQuery(name = "FacturaCabecera.findByFacId", query = "SELECT f FROM FacturaCabecera f WHERE f.facId = :facId"),
-    @NamedQuery(name = "FacturaCabecera.findByFecha", query = "SELECT f FROM FacturaCabecera f WHERE f.fecha = :fecha"),
-    @NamedQuery(name = "FacturaCabecera.findByTipoDocumento", query = "SELECT f FROM FacturaCabecera f WHERE f.tipoDocumento = :tipoDocumento"),
-    @NamedQuery(name = "FacturaCabecera.findByTipoCuenta", query = "SELECT f FROM FacturaCabecera f WHERE f.tipoCuenta = :tipoCuenta"),
-    @NamedQuery(name = "FacturaCabecera.findByTotal", query = "SELECT f FROM FacturaCabecera f WHERE f.total = :total")})
+    @NamedQuery(name = "FacturaCabecera.findAll", query = "SELECT f FROM FacturaCabecera f")
+    , @NamedQuery(name = "FacturaCabecera.findByFacId", query = "SELECT f FROM FacturaCabecera f WHERE f.facId = :facId")
+    , @NamedQuery(name = "FacturaCabecera.findByFecha", query = "SELECT f FROM FacturaCabecera f WHERE f.fecha = :fecha")
+    , @NamedQuery(name = "FacturaCabecera.findByTipoDocumento", query = "SELECT f FROM FacturaCabecera f WHERE f.tipoDocumento = :tipoDocumento")
+    , @NamedQuery(name = "FacturaCabecera.findByTipoCuenta", query = "SELECT f FROM FacturaCabecera f WHERE f.tipoCuenta = :tipoCuenta")
+    , @NamedQuery(name = "FacturaCabecera.findByTotal", query = "SELECT f FROM FacturaCabecera f WHERE f.total = :total")})
 public class FacturaCabecera implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

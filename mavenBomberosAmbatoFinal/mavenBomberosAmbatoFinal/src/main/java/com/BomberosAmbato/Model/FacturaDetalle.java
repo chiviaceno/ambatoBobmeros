@@ -23,19 +23,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Dennis Orellana
+ * @author Dennis
  */
 @Entity
 @Table(name = "factura_detalle")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "FacturaDetalle.findAll", query = "SELECT f FROM FacturaDetalle f"),
-    @NamedQuery(name = "FacturaDetalle.findByFadId", query = "SELECT f FROM FacturaDetalle f WHERE f.fadId = :fadId"),
-    @NamedQuery(name = "FacturaDetalle.findByDescripcion", query = "SELECT f FROM FacturaDetalle f WHERE f.descripcion = :descripcion"),
-    @NamedQuery(name = "FacturaDetalle.findByCantidad", query = "SELECT f FROM FacturaDetalle f WHERE f.cantidad = :cantidad"),
-    @NamedQuery(name = "FacturaDetalle.findByPrecio", query = "SELECT f FROM FacturaDetalle f WHERE f.precio = :precio"),
-    @NamedQuery(name = "FacturaDetalle.findByTotal", query = "SELECT f FROM FacturaDetalle f WHERE f.total = :total")})
+    @NamedQuery(name = "FacturaDetalle.findAll", query = "SELECT f FROM FacturaDetalle f")
+    , @NamedQuery(name = "FacturaDetalle.findByFadId", query = "SELECT f FROM FacturaDetalle f WHERE f.fadId = :fadId")
+    , @NamedQuery(name = "FacturaDetalle.findByDescripcion", query = "SELECT f FROM FacturaDetalle f WHERE f.descripcion = :descripcion")
+    , @NamedQuery(name = "FacturaDetalle.findByCantidad", query = "SELECT f FROM FacturaDetalle f WHERE f.cantidad = :cantidad")
+    , @NamedQuery(name = "FacturaDetalle.findByPrecio", query = "SELECT f FROM FacturaDetalle f WHERE f.precio = :precio")
+    , @NamedQuery(name = "FacturaDetalle.findByTotal", query = "SELECT f FROM FacturaDetalle f WHERE f.total = :total")})
 public class FacturaDetalle implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

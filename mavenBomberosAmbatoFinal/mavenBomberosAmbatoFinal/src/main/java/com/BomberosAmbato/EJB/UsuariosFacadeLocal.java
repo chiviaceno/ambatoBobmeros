@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author Dennis Orellana
+ * @author Dennis
  */
 @Local
 public interface UsuariosFacadeLocal {

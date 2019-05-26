@@ -29,25 +29,26 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Dennis Orellana
+ * @author Dennis
  */
 @Entity
 @Table(name = "inspecion_cabecera")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "InspecionCabecera.findAll", query = "SELECT i FROM InspecionCabecera i"),
-    @NamedQuery(name = "InspecionCabecera.findByIcnId", query = "SELECT i FROM InspecionCabecera i WHERE i.icnId = :icnId"),
-    @NamedQuery(name = "InspecionCabecera.findByDireccion", query = "SELECT i FROM InspecionCabecera i WHERE i.direccion = :direccion"),
-    @NamedQuery(name = "InspecionCabecera.findByLatitud", query = "SELECT i FROM InspecionCabecera i WHERE i.latitud = :latitud"),
-    @NamedQuery(name = "InspecionCabecera.findByLongitud", query = "SELECT i FROM InspecionCabecera i WHERE i.longitud = :longitud"),
-    @NamedQuery(name = "InspecionCabecera.findByFecha", query = "SELECT i FROM InspecionCabecera i WHERE i.fecha = :fecha"),
-    @NamedQuery(name = "InspecionCabecera.findByRiesgosDeIncendio", query = "SELECT i FROM InspecionCabecera i WHERE i.riesgosDeIncendio = :riesgosDeIncendio"),
-    @NamedQuery(name = "InspecionCabecera.findByRecomendaciones", query = "SELECT i FROM InspecionCabecera i WHERE i.recomendaciones = :recomendaciones"),
-    @NamedQuery(name = "InspecionCabecera.findByObservaciones", query = "SELECT i FROM InspecionCabecera i WHERE i.observaciones = :observaciones"),
-    @NamedQuery(name = "InspecionCabecera.findByEstado", query = "SELECT i FROM InspecionCabecera i WHERE i.estado = :estado"),
-    @NamedQuery(name = "InspecionCabecera.findByPlazo", query = "SELECT i FROM InspecionCabecera i WHERE i.plazo = :plazo"),
-    @NamedQuery(name = "InspecionCabecera.findByNumeroNotificacion", query = "SELECT i FROM InspecionCabecera i WHERE i.numeroNotificacion = :numeroNotificacion")})
+    @NamedQuery(name = "InspecionCabecera.findAll", query = "SELECT i FROM InspecionCabecera i")
+    , @NamedQuery(name = "InspecionCabecera.findByIcnId", query = "SELECT i FROM InspecionCabecera i WHERE i.icnId = :icnId")
+    , @NamedQuery(name = "InspecionCabecera.findByDireccion", query = "SELECT i FROM InspecionCabecera i WHERE i.direccion = :direccion")
+    , @NamedQuery(name = "InspecionCabecera.findByLatitud", query = "SELECT i FROM InspecionCabecera i WHERE i.latitud = :latitud")
+    , @NamedQuery(name = "InspecionCabecera.findByLongitud", query = "SELECT i FROM InspecionCabecera i WHERE i.longitud = :longitud")
+    , @NamedQuery(name = "InspecionCabecera.findByFecha", query = "SELECT i FROM InspecionCabecera i WHERE i.fecha = :fecha")
+    , @NamedQuery(name = "InspecionCabecera.findByRiesgosDeIncendio", query = "SELECT i FROM InspecionCabecera i WHERE i.riesgosDeIncendio = :riesgosDeIncendio")
+    , @NamedQuery(name = "InspecionCabecera.findByRecomendaciones", query = "SELECT i FROM InspecionCabecera i WHERE i.recomendaciones = :recomendaciones")
+    , @NamedQuery(name = "InspecionCabecera.findByObservaciones", query = "SELECT i FROM InspecionCabecera i WHERE i.observaciones = :observaciones")
+    , @NamedQuery(name = "InspecionCabecera.findByEstado", query = "SELECT i FROM InspecionCabecera i WHERE i.estado = :estado")
+    , @NamedQuery(name = "InspecionCabecera.findByPlazo", query = "SELECT i FROM InspecionCabecera i WHERE i.plazo = :plazo")
+    , @NamedQuery(name = "InspecionCabecera.findByNumeroInspeccion", query = "SELECT i FROM InspecionCabecera i WHERE i.numeroInspeccion = :numeroInspeccion")})
 public class InspecionCabecera implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,8 +102,8 @@ public class InspecionCabecera implements Serializable {
     private String plazo;
     @Basic(optional = false)
     @Size(min = 1, max = 10)
-    @Column(name = "numero_notificacion")
-    private String numeroNotificacion;
+    @Column(name = "numero_inspeccion")
+    private String numeroInspeccion;
     @OneToMany(mappedBy = "icnId")
     private List<InspeccionDetalle> inspeccionDetalleList;
     @JoinColumn(name = "per_id", referencedColumnName = "per_id")
@@ -119,7 +120,7 @@ public class InspecionCabecera implements Serializable {
         this.icnId = icnId;
     }
 
-    public InspecionCabecera(Integer icnId, String direccion, String latitud, String longitud, Date fecha, String riesgosDeIncendio, String recomendaciones, String observaciones, String estado, String plazo, String numeroNotificacion) {
+    public InspecionCabecera(Integer icnId, String direccion, String latitud, String longitud, Date fecha, String riesgosDeIncendio, String recomendaciones, String observaciones, String estado, String plazo, String numeroInspeccion) {
         this.icnId = icnId;
         this.direccion = direccion;
         this.latitud = latitud;
@@ -130,7 +131,7 @@ public class InspecionCabecera implements Serializable {
         this.observaciones = observaciones;
         this.estado = estado;
         this.plazo = plazo;
-        this.numeroNotificacion = numeroNotificacion;
+        this.numeroInspeccion = numeroInspeccion;
     }
 
     public Integer getIcnId() {
@@ -213,12 +214,12 @@ public class InspecionCabecera implements Serializable {
         this.plazo = plazo;
     }
 
-    public String getNumeroNotificacion() {
-        return numeroNotificacion;
+    public String getNumeroInspeccion() {
+        return numeroInspeccion;
     }
 
-    public void setNumeroNotificacion(String numeroNotificacion) {
-        this.numeroNotificacion = numeroNotificacion;
+    public void setNumeroInspeccion(String numeroInspeccion) {
+        this.numeroInspeccion = numeroInspeccion;
     }
 
     @XmlTransient

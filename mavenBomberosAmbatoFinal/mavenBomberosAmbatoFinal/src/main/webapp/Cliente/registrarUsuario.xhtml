@@ -12,64 +12,73 @@
 
             <ui:define name="body">
                 <h:form>
-                    <p:messages id="mensaje" autoUpdate="false" severity="info, fatal"/>
-                    <p:fieldset legend="Bienvenidos" style="margin-bottom:20px">
-                        <h:panelGrid columns="2" cellpadding="1" style="align-content: center">
-                            <h:panelGrid columns="2" style="align-content: center">
+                    <p:messages id="mensaje" autoUpdate="false" />
+                    <p:fieldset legend="Datos Personales">
 
-                                <p:fieldset legend="Datos Personales">
+                        <p:panelGrid columns="3" id="pgDatos">
+                            <p:outputLabel for="txtNombre" value="Nombre: " />
+                            <p:inputText id="txtNombre" value="" required="true"/>
+                            <p:message for="txtNombre"/>
 
-                                    <p:panelGrid columns="2">
-                                        <p:outputLabel value="Nombre" />
-                                        <p:inputText value="#{insertPersona.pNombre}" required="true"/>
-                                        
+                            <p:outputLabel for="txtApellido" value="Apellido: "/>
+                            <p:inputText id="txtApellido" value="" required="true"/>
+                            <p:message for="txtApellido"/>
 
-                                        <p:outputLabel  value="Apellido"/>
-                                        <p:inputText value="#{insertPersona.pApellido}" required="true"/>
-                                       
+                            <p:outputLabel for="txtCedula" value="Cedula de Identidad:"/>
+                            <p:inputText id="txtCedula" value="" required="true"/>
+                            <p:message for="txtCedula"/>
 
-                                        <p:outputLabel value="Cedula"/>
-                                        <p:inputText id="txtApellidos" value="#{insertPersona.pDni}" required="true"/>
-                                        
+                            <p:outputLabel for="txtDireccion" value="Dirección:"/>
+                            <p:inputText id="txtDireccion" value="" required="true"/>
+                            <p:message for="txtDireccion"/>
 
-                                        <p:outputLabel  value="Dirección"/>
-                                        <p:inputText value="#{insertPersona.pDireccion}" required="true"/>
-                                        
+                            <p:outputLabel for="txtTelefono" value="Teléfono: "/>
+                            <p:inputText id="txtTelefono" value="" required="true"/>
+                            <p:message for="txtTelefono"/>
 
-                                        <p:outputLabel value="Telefono"/>
-                                        <p:inputText value="#{insertPersona.pTelefono}" required="true"/>
-                                        
+                            <p:outputLabel for="somSexo" value="Sexo: "/>
+                            <p:selectOneMenu id="somSexo"  value = "">
+                                <f:selectItem itemLabel = "Masculino" itemValue = "Masculino" />
+                                <f:selectItem itemLabel = "Femenino" itemValue = "Femenino" />
+                            </p:selectOneMenu>
+                            <p:message for="somSexo"/>
 
-                                        <p:outputLabel value="Estado Civil"/>
-                                        <p:selectOneMenu id = "console" value = "#{insertPersona.pEstadoCivil}" style = "width: 125px">
-                                            <f:selectItem itemLabel = "Soltero/a" itemValue = "Soltero" />
-                                            <f:selectItem itemLabel = "Casado/a" itemValue = "Casado" />
-                                            <f:selectItem itemLabel = "Divorciado/a" itemValue = "Divorciado" />
-                                            <f:selectItem itemLabel = "Viudo/a" itemValue = "Viudo" />
-                                            <f:selectItem itemLabel = "Union Libre" itemValue = "Union Libre" />
-                                        </p:selectOneMenu>
-                                       
-                                        
-                                        <p:outputLabel value="Sexo"/>
-                                        <p:selectOneMenu  value = "#{insertPersona.pSexo}" style = "width: 125px">
-                                            <f:selectItem itemLabel = "Masculino" itemValue = "Masculino" />
-                                            <f:selectItem itemLabel = "Femenino" itemValue = "Femenino" />
-                                        </p:selectOneMenu>
-                                        
-                                        
-                                        <p:outputLabel value="Correo"/>
-                                        <p:inputText type="email" value="#{insertPersona.pCorreo}" required="true"/>
-                                       
-                                        
-                                    </p:panelGrid>
-                                </p:fieldset>
-                                <p:commandButton icon="ui-icon-check"  ajax="false" value="Registrar" update="mensaje" actionListener="#{insertPersona.ingresarPersona()}"/>
+                            <p:outputLabel for="somEstadoCivil" value="Estado Civil: "/>
+                            <p:selectOneMenu id = "somEstadoCivil" value = "" >
+                                <f:selectItem itemLabel = "Soltero/a" itemValue = "Soltero" />
+                                <f:selectItem itemLabel = "Casado/a" itemValue = "Casado" />
+                                <f:selectItem itemLabel = "Divorciado/a" itemValue = "Divorciado" />
+                                <f:selectItem itemLabel = "Viudo/a" itemValue = "Viudo" />
+                                <f:selectItem itemLabel = "Union Libre" itemValue = "Union Libre" />
+                            </p:selectOneMenu>
+                            <p:message for="somEstadoCivil"/>
 
-                            </h:panelGrid>
-                        </h:panelGrid>
+                            <p:outputLabel for="txtCorreo" value="Correo Electronico: "/>
+                            <p:inputText id="txtCorreo" type="email" value="" required="true"/>
+                            <p:message for="txtCorreo"/>
+
+                        </p:panelGrid>
                     </p:fieldset>
+                    <p:fieldset legend="Datos De Usuario">
+                        <p:panelGrid columns="3" id="pgCuenta">
+                            <p:outputLabel  for="txtUsuario" value="Usuario: "/>
+                            <p:inputText id="txtUsuario" value="" required="true" requiredMessage="Campo Requerido"/>
+                            <p:message for="txtUsuario"/>
 
+                            <p:outputLabel for="txtPassword" value="Contraseña: "/>
+                            <p:password id="txtPassword" value="" required="true" match="txtPassword1"
+                                        feedback="true" promptLabel="Ingresar Clave"  validatorMessage="Las Claves No Coiciden"
+                                        weakLabel="Debil" strongLabel="Fuerte" goodLabel="Bueno" requiredMessage="Campo Requerido"/>
+                            <p:message for="txtPassword"/>
 
+                            <p:outputLabel for="txtPassword1" value="Repetir Contraseña: "/>
+                            <p:password id="txtPassword1" required="true" requiredMessage="Campo Requerido"/>
+                            <p:message for="txtPassword1"/>
+                        </p:panelGrid>
+
+                        <p:commandButton icon="ui-icon-check"  value="Registrar" update="pgDatos, pgCuenta"/>
+
+                    </p:fieldset>
                 </h:form>
             </ui:define>
 

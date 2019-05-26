@@ -23,21 +23,23 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Dennis Orellana
+ * @author Dennis
  */
 @Entity
 @Table(name = "inspeccion_detalle")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "InspeccionDetalle.findAll", query = "SELECT i FROM InspeccionDetalle i"),
-    @NamedQuery(name = "InspeccionDetalle.findByIndId", query = "SELECT i FROM InspeccionDetalle i WHERE i.indId = :indId"),
-    @NamedQuery(name = "InspeccionDetalle.findByEstado", query = "SELECT i FROM InspeccionDetalle i WHERE i.estado = :estado"),
-    @NamedQuery(name = "InspeccionDetalle.findByTipo", query = "SELECT i FROM InspeccionDetalle i WHERE i.tipo = :tipo"),
-    @NamedQuery(name = "InspeccionDetalle.findByCantidad", query = "SELECT i FROM InspeccionDetalle i WHERE i.cantidad = :cantidad"),
-    @NamedQuery(name = "InspeccionDetalle.findByCapacidad", query = "SELECT i FROM InspeccionDetalle i WHERE i.capacidad = :capacidad"),
-    @NamedQuery(name = "InspeccionDetalle.findByUbicacion", query = "SELECT i FROM InspeccionDetalle i WHERE i.ubicacion = :ubicacion"),
-    @NamedQuery(name = "InspeccionDetalle.findByTiene", query = "SELECT i FROM InspeccionDetalle i WHERE i.tiene = :tiene")})
+    @NamedQuery(name = "InspeccionDetalle.findAll", query = "SELECT i FROM InspeccionDetalle i")
+    , @NamedQuery(name = "InspeccionDetalle.findByIndId", query = "SELECT i FROM InspeccionDetalle i WHERE i.indId = :indId")
+    , @NamedQuery(name = "InspeccionDetalle.findByEstado", query = "SELECT i FROM InspeccionDetalle i WHERE i.estado = :estado")
+    , @NamedQuery(name = "InspeccionDetalle.findByTipo", query = "SELECT i FROM InspeccionDetalle i WHERE i.tipo = :tipo")
+    , @NamedQuery(name = "InspeccionDetalle.findByCantidad", query = "SELECT i FROM InspeccionDetalle i WHERE i.cantidad = :cantidad")
+    , @NamedQuery(name = "InspeccionDetalle.findByCapacidad", query = "SELECT i FROM InspeccionDetalle i WHERE i.capacidad = :capacidad")
+    , @NamedQuery(name = "InspeccionDetalle.findByUbicacion", query = "SELECT i FROM InspeccionDetalle i WHERE i.ubicacion = :ubicacion")
+    , @NamedQuery(name = "InspeccionDetalle.findByTiene", query = "SELECT i FROM InspeccionDetalle i WHERE i.tiene = :tiene")
+    , @NamedQuery(name = "InspeccionDetalle.findByNumeroNotificacion", query = "SELECT i FROM InspeccionDetalle i WHERE i.numeroNotificacion = :numeroNotificacion")})
 public class InspeccionDetalle implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,6 +75,9 @@ public class InspeccionDetalle implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "tiene")
     private String tiene;
+    @Size(max = 10)
+    @Column(name = "numero_notificacion")
+    private String numeroNotificacion;
     @JoinColumn(name = "icn_id", referencedColumnName = "icn_id")
     @ManyToOne
     private InspecionCabecera icnId;
@@ -151,6 +156,14 @@ public class InspeccionDetalle implements Serializable {
 
     public void setTiene(String tiene) {
         this.tiene = tiene;
+    }
+
+    public String getNumeroNotificacion() {
+        return numeroNotificacion;
+    }
+
+    public void setNumeroNotificacion(String numeroNotificacion) {
+        this.numeroNotificacion = numeroNotificacion;
     }
 
     public InspecionCabecera getIcnId() {
