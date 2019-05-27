@@ -1,44 +1,25 @@
 package com.BomberosAmbato.Controller;
 
-import com.BomberosAmbato.EJB.UsuariosFacadeLocal;
 import com.BomberosAmbato.Model.Persona;
 import com.BomberosAmbato.Model.Usuarios;
 import java.io.Serializable;
-
-import javax.ejb.EJB;
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
 @ViewScoped
 public class UsuariosController implements Serializable{
 
-    
-    
-
-    @EJB
-    private UsuariosFacadeLocal usuariosEJBB;
-    
-    @Inject
     private Usuarios usuarios;
-    
-    @Inject
     private Persona persona;
-    
-    
 
-    public void registrar(){
-        try {
-            persona.setEstado("Activo");
-            usuarios.setTipoUsuario("Cliente");
-            usuarios.setPerId(persona);
-            usuariosEJBB.create(usuarios);
-        } catch (Exception e) {
-            //mensaje con Groul
-        }
+    @PostConstruct
+    public void init() {
+        usuarios = new Usuarios();
+        persona = new Persona();
     }
-    
+
     public Usuarios getUsuarios() {
         return usuarios;
     }
