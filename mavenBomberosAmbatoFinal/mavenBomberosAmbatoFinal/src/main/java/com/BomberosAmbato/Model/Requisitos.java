@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.BomberosAmbato.Model;
 
 import java.io.Serializable;
@@ -22,45 +18,47 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author Dennis Orellana
- */
+
 @Entity
 @Table(name = "requisitos")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Requisitos.findAll", query = "SELECT r FROM Requisitos r"),
-    @NamedQuery(name = "Requisitos.findByReqId", query = "SELECT r FROM Requisitos r WHERE r.reqId = :reqId"),
-    @NamedQuery(name = "Requisitos.findByNombre", query = "SELECT r FROM Requisitos r WHERE r.nombre = :nombre"),
-    @NamedQuery(name = "Requisitos.findByDescripcion", query = "SELECT r FROM Requisitos r WHERE r.descripcion = :descripcion"),
-    @NamedQuery(name = "Requisitos.findByLlenadopor", query = "SELECT r FROM Requisitos r WHERE r.llenadopor = :llenadopor")})
+    @NamedQuery(name = "Requisitos.findAll", query = "SELECT r FROM Requisitos r")
+    , @NamedQuery(name = "Requisitos.findByReqId", query = "SELECT r FROM Requisitos r WHERE r.reqId = :reqId")
+    , @NamedQuery(name = "Requisitos.findByNombre", query = "SELECT r FROM Requisitos r WHERE r.nombre = :nombre")
+    , @NamedQuery(name = "Requisitos.findByDescripcion", query = "SELECT r FROM Requisitos r WHERE r.descripcion = :descripcion")
+    , @NamedQuery(name = "Requisitos.findByLlenadopor", query = "SELECT r FROM Requisitos r WHERE r.llenadopor = :llenadopor")})
 public class Requisitos implements Serializable {
-    @OneToMany(mappedBy = "reqId")
-    private List<InspeccionDetalle> inspeccionDetalleList;
-    @OneToMany(mappedBy = "reqId")
-    private List<ServicioRequisitos> servicioRequisitosList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "req_id")
     private Integer reqId;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "nombre")
     private String nombre;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 300)
     @Column(name = "descripcion")
     private String descripcion;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 15)
     @Column(name = "llenadopor")
     private String llenadopor;
+    
+    @OneToMany(mappedBy = "reqId")
+    private List<InspeccionDetalle> inspeccionDetalleList;
+    @OneToMany(mappedBy = "reqId")
+    private List<ServicioRequisitos> servicioRequisitosList;
 
     public Requisitos() {
     }
@@ -108,6 +106,24 @@ public class Requisitos implements Serializable {
         this.llenadopor = llenadopor;
     }
 
+    @XmlTransient
+    public List<InspeccionDetalle> getInspeccionDetalleList() {
+        return inspeccionDetalleList;
+    }
+
+    public void setInspeccionDetalleList(List<InspeccionDetalle> inspeccionDetalleList) {
+        this.inspeccionDetalleList = inspeccionDetalleList;
+    }
+
+    @XmlTransient
+    public List<ServicioRequisitos> getServicioRequisitosList() {
+        return servicioRequisitosList;
+    }
+
+    public void setServicioRequisitosList(List<ServicioRequisitos> servicioRequisitosList) {
+        this.servicioRequisitosList = servicioRequisitosList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -131,24 +147,6 @@ public class Requisitos implements Serializable {
     @Override
     public String toString() {
         return "com.BomberosAmbato.Model.Requisitos[ reqId=" + reqId + " ]";
-    }
-
-    @XmlTransient
-    public List<InspeccionDetalle> getInspeccionDetalleList() {
-        return inspeccionDetalleList;
-    }
-
-    public void setInspeccionDetalleList(List<InspeccionDetalle> inspeccionDetalleList) {
-        this.inspeccionDetalleList = inspeccionDetalleList;
-    }
-
-    @XmlTransient
-    public List<ServicioRequisitos> getServicioRequisitosList() {
-        return servicioRequisitosList;
-    }
-
-    public void setServicioRequisitosList(List<ServicioRequisitos> servicioRequisitosList) {
-        this.servicioRequisitosList = servicioRequisitosList;
     }
     
 }

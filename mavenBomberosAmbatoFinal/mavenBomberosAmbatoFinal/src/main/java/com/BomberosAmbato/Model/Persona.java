@@ -83,7 +83,7 @@ public class Persona implements Serializable {
     @Size(max = 10)
     @Column(name = "sexo")
     private String sexo;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    
     @Size(max = 50)
     @Column(name = "e_mail")
     private String eMail;
@@ -91,15 +91,16 @@ public class Persona implements Serializable {
     @Column(name = "estado")
     private String estado;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "fecha_creacion")
-    @Temporal(TemporalType.DATE)
+    
+    @Column(name = "fecha_creacion",insertable = false )
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCreacion;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "fecha_modificacion")
-    @Temporal(TemporalType.DATE)
+   
+    @Column(name = "fecha_modificacion", insertable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaModificacion;
+    
     @OneToMany(mappedBy = "perId")
     private List<InspecionCabecera> inspecionCabeceraList;
     @OneToMany(mappedBy = "perId")

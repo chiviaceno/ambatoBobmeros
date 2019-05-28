@@ -7,8 +7,10 @@ package com.BomberosAmbato.Model;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -42,23 +45,28 @@ public class Usuarios implements Serializable {
     @Basic(optional = false)
     @Column(name = "usu_id")
     private Integer usuId;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 15)
     @Column(name = "usuario")
     private String usuario;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "password")
     private String password;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 15)
     @Column(name = "tipo_usuario")
     private String tipoUsuario;
-    @JoinColumn(name = "per_id", referencedColumnName = "per_id")
-    @ManyToOne
+    
+    
+    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER )
+    @JoinColumn(name = "per_id",referencedColumnName = "per_id", nullable = false )
     private Persona perId;
 
     public Usuarios() {
