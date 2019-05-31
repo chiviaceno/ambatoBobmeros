@@ -43,20 +43,24 @@ public class Servicio implements Serializable {
     @Basic(optional = false)
     @Column(name = "ser_id")
     private Integer serId;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 200)
     @Column(name = "nombre")
     private String nombre;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 300)
     @Column(name = "descripcion")
     private String descripcion;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "valor")
     private double valor;
+    
     @OneToMany(mappedBy = "serId")
     private List<FacturaDetalle> facturaDetalleList;
     @OneToMany(mappedBy = "serId")

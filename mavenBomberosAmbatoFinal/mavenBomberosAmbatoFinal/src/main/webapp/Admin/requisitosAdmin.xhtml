@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../Templates/TemplateAdmin.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panel>
+                        <p:panelGrid columns="2">
+                            <h:outputText value="Nombre del Requsisto: "/>
+                            <p:inputText value="#{requisitosController.requisitos.nombre}"/>
+
+                            <h:outputText value="Descripción del Requsisto: "/>
+                            <p:inputText value="#{requisitosController.requisitos.descripcion}"    />    
+
+                            <h:outputLabel value="Requisito Llenado Por: " />
+                            <p:selectOneMenu id="console" value="#{requisitosController.requisitos.llenadopor}" style="width:125px">
+                                <f:selectItem itemLabel="Seleccione Uno" itemValue="" />
+                                <f:selectItem itemLabel="Cliente" itemValue="Cliente" />
+                                <f:selectItem itemLabel="Inspector" itemValue="Inspector" />
+                            </p:selectOneMenu>
+
+                        </p:panelGrid>
+                        <p:commandButton value="Registrar" actionListener = "#{requisitosController.registrar()}"/>
+                    </p:panel>
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

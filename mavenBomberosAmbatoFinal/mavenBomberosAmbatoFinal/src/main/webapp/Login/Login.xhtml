@@ -5,30 +5,32 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
 
-    <body>
+    <body id="principal">
 
         <ui:composition template="/Templates/TemplateLogin.xhtml">
+            <div id="cuadro">
+                <ui:define name="body">
+                    <h:form> 
+                        <p:panel header="Inicie Sesión Por Favor">
+                            <h:form >
 
-            <ui:define name="body">
-                <h:form> 
-                    <p:panel header="Inicie Sesión Por Favor">
-                        <h:form >
-                            
-                            <p:growl id="growl" life="3000"/>
-                            <h:panelGrid columns="2" id="hpgLogin">
+                                <p:messages autoUpdate="true"  showDetail="true" />
+                                <h:panelGrid columns="2" id="hpgLogin">
 
-                                <h:outputLabel for="txtUsuario" value="Usuario"/>
-                                <p:inputText id="txtUsuario" value="#{login.nombreUsuario}" required="true"/>
+                                    <h:outputLabel for="txtUsuario" value="Usuario"/>
+                                    <p:inputText id="txtUsuario" value="#{loginController.usuarios.usuario}" required="true"/>
 
-                                <h:outputLabel for="txtClave" value="Clave *"/>
-                                <p:password id="txtClave" value="#{login.passwordUsuario}" match="txtClave" label="Password" required="true" />
-                                <p:commandButton icon="ui-icon-key" value="Iniciar Sesion" action="#{login.autentificar()}" update="hpgLogin, growl"/>
-                            </h:panelGrid>
-                        </h:form>
-                    </p:panel>
-                </h:form>
-            </ui:define>
+                                    <h:outputLabel for="txtClave" value="Clave *"/>
+                                    <p:password id="txtClave" value="#{loginController.usuarios.password}" match="txtClave" label="Password" required="true" />
 
+                                    <p:column/>
+                                    <p:commandButton icon="ui-icon-key" value="Iniciar Sesion" action="#{loginController.iniciarSesion()}" update="hpgLogin"/>
+                                </h:panelGrid>
+                            </h:form>
+                        </p:panel>
+                    </h:form>
+                </ui:define>
+            </div>
         </ui:composition>
 
     </body>

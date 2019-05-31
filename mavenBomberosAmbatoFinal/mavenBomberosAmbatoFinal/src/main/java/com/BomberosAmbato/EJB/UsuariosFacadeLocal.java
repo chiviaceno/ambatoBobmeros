@@ -22,4 +22,7 @@ public interface UsuariosFacadeLocal {
 
     int count();
     
+    Usuarios iniciarSesion(Usuarios us);
+    Usuarios usuarioExiste(Usuarios us);
+    
 }

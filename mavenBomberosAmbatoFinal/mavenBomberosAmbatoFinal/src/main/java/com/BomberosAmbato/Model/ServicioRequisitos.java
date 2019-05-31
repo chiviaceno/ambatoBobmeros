@@ -8,8 +8,10 @@ package com.BomberosAmbato.Model;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,13 +42,16 @@ public class ServicioRequisitos implements Serializable {
     @Basic(optional = false)
     @Column(name = "sre_id")
     private Integer sreId;
+    
     @OneToMany(mappedBy = "sreId")
     private List<Archivos> archivosList;
+    
     @JoinColumn(name = "req_id", referencedColumnName = "req_id")
     @ManyToOne
     private Requisitos reqId;
-    @JoinColumn(name = "ser_id", referencedColumnName = "ser_id")
-    @ManyToOne
+    
+    @JoinColumn(name = "ser_id", referencedColumnName = "ser_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER )
     private Servicio serId;
 
     public ServicioRequisitos() {

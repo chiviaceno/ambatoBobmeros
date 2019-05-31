@@ -1,70 +1,66 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version='1.0' encoding='UTF-8' ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title><ui:insert name="title">Cuerpo de Bomberos Ambato</ui:insert></title>
-        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="default.css"/>
+        <h:outputStylesheet library="css" name="cssLayout.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
+        <title>Bomberos Tisaleo/ Admin</title>
+       
+
     </h:head>
 
     <h:body>
 
-        <p:growl id="growl" life="3000" />
-
-        <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="65" header="BIENVEIDOS AL HORABLE CUERPO DE BOMBEROS DE AMBATO">
+        <div id="top">
+            <ui:insert name="top">
                 <div id="menuPrincpal">
-
                     <h:form>  
                         <p:growl id="messages"/>
                         <p:menubar id="menuBar">
-                            <p:menuitem value="#{bundle.Home}" outcome="/Admin/indexAdministrator" icon="ui-icon-home"/>
+                            <p:menuitem value="Inicio" outcome="/Admin/indexAdministrador" icon="ui-icon-home"/>
                             <p:submenu label="Usuarios">
-                                <p:menuitem value="Lista Usuarios" outcome ="/Admin/indexAdministrator" />
+                                <p:menuitem value="Usuarios" outcome ="/Admin/indexAdministrador"/>
+                                <p:menuitem value="Lista Clientes" outcome ="/Admin/indexAdministrador"/>
                             </p:submenu>
                             <p:submenu label="Contador">
-
-                                <p:menuitem value="Lista" outcome="/Admin/indexAdministrator" />
-                                <p:menuitem value="Tipo Servicio" outcome="/Admin/indexAdministrator" />
+                                <p:menuitem value="Reportes" outcome="/Admin/indexAdministrador" />
+                                <p:menuitem value="Permisos" outcome="/Admin/indexAdministrador" />
                             </p:submenu>
 
                             <p:submenu label="Inspección" >
-                                <p:menuitem value="Lista" outcome="/Admin/indexAdministrator" />
+                                <p:menuitem value="Listas de Inspeccion" outcome="/Admin/indexAdministrador" />
+
                             </p:submenu>
 
                             <p:submenu label="Servicio">
-                                <p:menuitem value="Tipo de Cuenta" outcome="/Admin/indexAdministrator" />
-                                <p:menuitem value="Permisos" outcome="/Admin/indexAdministrator" />
-                                <p:menuitem value="Cuentas" outcome="/Admin/indexAdministrator" />
+                                <p:menuitem value="Servicios" outcome="serviciosAdmin" />
+                                <p:menuitem value="Requisitos" outcome="requisitosAdmin" />
+
                             </p:submenu>
-                            <p:submenu label="Permisos" >
-                                <p:menuitem value="Solicitud de Inspección" outcome="/Admin/indexAdministrator" />
-                                <p:menuitem value="Requsitos de Inspección" outcome="/Admin/indexAdministrator" />
-                                <p:menuitem value="Inspección" outcome="/Admin/indexAdministrator" />
-                                <p:menuitem value="Estado de Solicitud" outcome="/Admin/indexAdministrator" />
-                            </p:submenu>
+
                             <f:facet name="options">
-                                <p:commandButton value="Cerar Sesión" actionListener="#{login.cerrarSesion()}" action="/Login/Login?faces-redirect=true" icon="ui-icon-key"/>
+                                <p:commandButton value="Cerar Sesión" actionListener="#{templateController.cerrarSesion()}" action="/Login/Login?faces-redirect=true" icon="ui-icon-key"/>
                             </f:facet>
                         </p:menubar>
                     </h:form>
                 </div>
-            </p:layoutUnit>
+            </ui:insert>
+        </div>
 
-            <p:layoutUnit position="south" size="60">
-                <ui:insert name="footer"/>
-            </p:layoutUnit>
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
 
-            <p:layoutUnit position="center">
-                <ui:insert name="body"/>
-            </p:layoutUnit>
-
-        </p:layout>
+        <div id="bottom">
+            <ui:insert name="bottom">Bottom</ui:insert>
+        </div>
 
     </h:body>
 
