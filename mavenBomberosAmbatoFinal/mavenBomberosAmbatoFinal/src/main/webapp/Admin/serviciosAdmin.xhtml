@@ -13,33 +13,71 @@
             <ui:define name="content">
                 <h:form>
                     <p:messages id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>
-                    <p:fieldset legend="Cree El nuevo Servicio">
-                        <p:panelGrid columns="2" id="pgServicios">
+                    <p:fieldset legend="NUEVO SERVICIO">
+                        <p:fieldset legend="Datos del Servicio">
+                            <p:panelGrid columns="2" id="pgServicios">
+                                <h:outputLabel for="txtNombreServicio" value="Nombre del Servicio:"/>
+                                <p:inputText id="txtNombreServicio" value="#{serviciosController.servicio.nombre}" required="true"/>
+                                <h:outputLabel for="txtDescripcionServicio" value="Descripción del Servicio:"/>
+                                <p:inputText id="txtDescripcionServicio" value="#{serviciosController.servicio.descripcion}" required="true"/>
+                                <h:outputLabel for="txtPrecioServicio" value="Precio del Servicio:"/>
+                                <p:inputText id="txtDPrecioServicio" value="#{serviciosController.servicio.valor}" required="true"/>
+                            </p:panelGrid>
+                        </p:fieldset>
+                        <p:fieldset legend="Agregar Los Requisitos Del Servicio">
+                            <p:panelGrid columns="2" id="pgRequisitos">
+                                <h:outputLabel for="cbxRequisitos" value="Requisitos" />
+                                <p:selectOneMenu id="cbxRequisitos" value="#{serviciosController.requisitos}" converter="omnifaces.SelectItemsConverter">
+                                    <f:selectItems noSelectionValue="true" itemLabel="Seleccione" itemValue="#{null}"/>
+                                    <f:selectItems value="#{serviciosController.listaRequisitos}" var="req" itemLabel="#{req.nombre}" itemValue="#{req}" />
+                                </p:selectOneMenu>
+                                <p:column/>
+                                <p:commandButton  icon="ui-icon-check"  value="Agregar" update="pgRequisitos,dtRequisitos" actionListener="#{serviciosController.agregarRequisito()}"/>
+                            </p:panelGrid>
+                        </p:fieldset>
+                        <p:fieldset legend="Requisitos Del Servicio">
+                            <p:dataTable id="dtRequisitos" value="#{serviciosController.listaServicioRequistos}" var="serReq">
+                                <p:column headerText="Nombre del Servicio">
+                                    #{serReq.reqId.nombre}
+                                </p:column>
+                                <p:column headerText="Descripcion del Servicio">
+                                    #{serReq.reqId.descripcion}
+                                </p:column>
+                                <p:column headerText="Llenado el Servicio Por">
+                                    #{serReq.reqId.llenadopor}
+                                </p:column>
 
-                            <h:outputLabel for="txtNombreServicio" value="Nombre del Servicio:"/>
-                            <p:inputText id="txtNombreServicio" value="#{serviciosController.servicio.nombre}" required="true"/>
-                            <h:outputLabel for="txtDescripcionServicio" value="Descripción del Servicio:"/>
-                            <p:inputText id="txtDescripcionServicio" value="#{serviciosController.servicio.descripcion}" required="true"/>
-                            <h:outputLabel for="txtPrecioServicio" value="Precio del Servicio:"/>
-                            <p:inputText id="txtDPrecioServicio" value="#{serviciosController.servicio.valor}" required="true"/>
-                        </p:panelGrid>
-                    </p:fieldset>
-                    <p:fieldset legend="Requisitos Del Servicio">
-                        <p:panelGrid columns="2" id="pgRequisitos">
-                            <h:outputLabel for="cbxRequisitos" value="Requisitos" />
-                            <p:selectCheckboxMenu id="cbxRequisitos" value="#{serviciosController.requisitos.reqId}"  multiple="true"
-                                                  filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
-                                <f:selectItems value="#{serviciosController.listaRequisitos}" var="req" itemLabel="#{req.nombre}" itemValue="#{req.reqId}" />
-                            </p:selectCheckboxMenu>
-                        </p:panelGrid>
-
-                        <p:commandButton  icon="ui-icon-check"  value="Registrar" update="mensaje,pgServicios,pgRequisitos" actionListener="#{serviciosController.registrar()}"/>
+                            </p:dataTable>
+                        </p:fieldset>
+                        <p:commandButton  icon="ui-icon-check"  value="Registrar" update="mensaje,pgServicios" actionListener="#{serviciosController.registrar()}"/>
                     </p:fieldset>
                 </h:form>
+                <h:form>
+                    <p:fieldset legend="Requisitos Del Servicio">
+                        <p:dataTable id="dtUsuarios" value="#{usuariosController.getlUsuario}" var="usu">
+                            <p:column headerText="Nombre">
+                                #{usu.perId.nombre}
+                            </p:column>
+                            <p:column headerText="Apellido">
+                                #{usu.perId.apellido}
+                            </p:column>
+                            <p:column headerText="Cédula">
+                                #{usu.perId.dni}
+                            </p:column>
+                            <p:column headerText="Direccion">
+                                #{usu.perId.direccion}
+                            </p:column>
+                            <p:column headerText="Usuarios">
+                                #{usu.usuario}
+                            </p:column>
+                            <p:column headerText="Tipo Usuario">
+                                #{usu.tipoUsuario}
+                            </p:column>
 
+                        </p:dataTable>
+                    </p:fieldset>
+                </h:form>
             </ui:define>
-
-
 
         </ui:composition>
 

@@ -12,7 +12,7 @@
         <h:outputStylesheet library="css" name="cssLayout.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
         <title>Bomberos Tisaleo/ Admin</title>
-       
+        <f:event type="preRenderView" listener="#{templateController.verificarSesion()}"/>
 
     </h:head>
 
@@ -26,7 +26,7 @@
                         <p:menubar id="menuBar">
                             <p:menuitem value="Inicio" outcome="/Admin/indexAdministrador" icon="ui-icon-home"/>
                             <p:submenu label="Usuarios">
-                                <p:menuitem value="Usuarios" outcome ="/Admin/indexAdministrador"/>
+                                <p:menuitem value="Usuarios" outcome ="registrarUsuarioAdmin"/>
                                 <p:menuitem value="Lista Clientes" outcome ="/Admin/indexAdministrador"/>
                             </p:submenu>
                             <p:submenu label="Contador">

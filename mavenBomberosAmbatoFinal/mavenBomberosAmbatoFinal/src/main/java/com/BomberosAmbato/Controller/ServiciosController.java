@@ -1,21 +1,21 @@
 package com.BomberosAmbato.Controller;
 
 import com.BomberosAmbato.EJB.RequisitosFacadeLocal;
-import com.BomberosAmbato.EJB.ServicioFacadeLocal;
+
 import com.BomberosAmbato.EJB.ServicioRequisitosFacadeLocal;
 import com.BomberosAmbato.Model.Requisitos;
 import com.BomberosAmbato.Model.Servicio;
 import com.BomberosAmbato.Model.ServicioRequisitos;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.omnifaces.cdi.ViewScoped;
 
 @Named
 @ViewScoped
@@ -27,23 +27,33 @@ public class ServiciosController implements Serializable {
     @EJB
     private RequisitosFacadeLocal requisitosEJB;
 
-    
     @Inject
     private Servicio servicio;
-    @Inject
-    private Requisitos requisitos;
+
     @Inject
     private ServicioRequisitos serviciosRequisitos;
 
     private List<Requisitos> listaRequisitos;
+    @Inject
+    private Requisitos requisitos;
+    
+    
+    private List<ServicioRequisitos> listaSR = new ArrayList();
 
     @PostConstruct
     public void init() {
 //        servicio = new Servicio();
-//        requisitos = new Requisitos();
+
 //        serviciosRequisitos = new ServicioRequisitos();
-        
         listaRequisitos = requisitosEJB.findAll();
+    }
+
+    public void agregarRequisito() {
+        
+        ServicioRequisitos sreq = new ServicioRequisitos();
+        sreq.setReqId(requisitos);
+        this.listaSR.add(sreq);
+        
     }
 
     public void registrar() {
@@ -51,7 +61,7 @@ public class ServiciosController implements Serializable {
             serviciosRequisitos.setReqId(requisitos);
             serviciosRequisitos.setSerId(servicio);
             servicioRequisitosEJB.create(serviciosRequisitos);
-            
+
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Usuario Creado Correctamente"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error!"));
@@ -89,6 +99,14 @@ public class ServiciosController implements Serializable {
 
     public void setListaRequisitos(List<Requisitos> listaRequisitos) {
         this.listaRequisitos = listaRequisitos;
+    }
+
+    public List<ServicioRequisitos> getListaServicioRequistos() {
+        return listaSR;
+    }
+
+    public void setListaServicioRequistos(List<ServicioRequisitos> listaServicioRequistos) {
+        this.listaSR = listaServicioRequistos;
     }
 
 }

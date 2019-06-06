@@ -24,5 +24,7 @@ public interface UsuariosFacadeLocal {
     
     Usuarios iniciarSesion(Usuarios us);
     Usuarios usuarioExiste(Usuarios us);
+    Usuarios listarClientes(Usuarios us);
+    Usuarios listarUsuarios(Usuarios us);
     
 }
